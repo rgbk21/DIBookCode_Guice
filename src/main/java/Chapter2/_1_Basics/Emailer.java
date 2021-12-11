@@ -1,9 +1,26 @@
 package Chapter2._1_Basics;
 
+import Chapter2._1_Basics.GuiceConfig.EmailModule;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 
-public class Emailer {
+class AdvancedEmailer implements EmailerIF {
+
+  private final SpellChecker spellChecker;
+
+  @Inject
+  public AdvancedEmailer(SpellChecker spellChecker) {
+    this.spellChecker = spellChecker;
+  }
+
+  @Override
+  public void send(String emailText) {
+    System.out.println("In AdvancedEmailer class");
+    spellChecker.validateText(emailText);
+  }
+}
+
+public class Emailer implements EmailerIF {
   private final SpellChecker spellChecker;
 
   @Inject
@@ -11,15 +28,17 @@ public class Emailer {
     this.spellChecker = spellChecker;
   }
 
+  @Override
   public void send(String emailText) {
+    System.out.println("In Emailer class");
     spellChecker.validateText(emailText);
   }
 }
 
 class EmailClient {
-  private final Emailer emailer;
+  private final EmailerIF emailer;
 
-  EmailClient(Emailer emailer) {
+  EmailClient(EmailerIF emailer) {
     this.emailer = emailer;
   }
 
@@ -31,7 +50,7 @@ class EmailClient {
 class Test {
 
   public static void main(String[] args) {
-    Emailer emailer = Guice.createInjector().getInstance(Emailer.class);
+    EmailerIF emailer = Guice.createInjector(new EmailModule()).getInstance(EmailerIF.class);
     EmailClient client = new EmailClient(emailer);
     client.sendEmail();
   }
