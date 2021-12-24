@@ -1,5 +1,6 @@
 package Chapter2._1_Basics;
 
+import Chapter2._1_Basics.GuiceConfig.EmailAbstractModule;
 import Chapter2._1_Basics.GuiceConfig.EmailModule;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
@@ -48,9 +49,8 @@ class EmailClient {
 }
 
 class Test {
-
   public static void main(String[] args) {
-    EmailerIF emailer = Guice.createInjector(new EmailModule()).getInstance(EmailerIF.class);
+    EmailerIF emailer = Guice.createInjector(new EmailAbstractModule()).getInstance(EmailerIF.class);
     EmailClient client = new EmailClient(emailer);
     client.sendEmail();
   }
