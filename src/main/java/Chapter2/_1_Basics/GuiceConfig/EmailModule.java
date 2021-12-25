@@ -2,7 +2,6 @@ package Chapter2._1_Basics.GuiceConfig;
 
 import Chapter2._1_Basics.Dict;
 import Chapter2._1_Basics.Emailer;
-import Chapter2._1_Basics.EmailerIF;
 import Chapter2._1_Basics.SpellChecker;
 import com.google.inject.Binder;
 import com.google.inject.Module;
@@ -18,6 +17,6 @@ public class EmailModule implements Module {
     binder.bind(Emailer.class);
     binder.bind(SpellChecker.class);
     binder.bind(Dict.class);
-    binder.bind(EmailerIF.class).to(Emailer.class);
+    binder.bind(Emailer.class);
   }
 }
