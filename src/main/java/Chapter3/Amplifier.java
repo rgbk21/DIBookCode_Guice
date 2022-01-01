@@ -1,8 +1,6 @@
 package Chapter3;
 
-import static com.google.common.base.Preconditions.checkState;
-
-import Chapter2._1_Basics.GuiceConfig.EmailAbstractModule;
+import Chapter3.GuiceConfig.AmplifierAbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 
@@ -62,7 +60,7 @@ class Footpedal {
 
 class Test {
   public static void main(String[] args) {
-    Amplifier amplifier = Guice.createInjector(new EmailAbstractModule()).getInstance(Amplifier.class);
+    Amplifier amplifier = Guice.createInjector(new AmplifierAbstractModule()).getInstance(Amplifier.class);
     amplifier.playMusic();
   }
 }
