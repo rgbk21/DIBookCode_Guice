@@ -14,6 +14,8 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     // https://mvnrepository.com/artifact/com.google.inject/guice
     implementation group: 'com.google.inject', name: 'guice', version: '4.0'
+    // https://mvnrepository.com/artifact/com.google.inject.extensions/guice-assistedinject
+    implementation group: 'com.google.inject.extensions', name: 'guice-assistedinject', version: '5.0.1'
 }
 
 test {
