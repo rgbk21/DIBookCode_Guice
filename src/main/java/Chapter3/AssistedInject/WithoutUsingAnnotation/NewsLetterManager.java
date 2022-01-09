@@ -51,7 +51,7 @@ class Recipient {}
 
 class Test {
   public static void main(String[] args) {
-    Injector injector = Guice.createInjector(new GuiceModule());
+    Injector injector = Guice.createInjector(new GuiceModule(), new DummyGuiceModule());
     NewsLetterManager manager = injector.getInstance(NewsLetterManager.class);
     manager.addRecipient(new Recipient());
     manager.addRecipient(new Recipient());
